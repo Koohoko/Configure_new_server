@@ -30,22 +30,32 @@ sudo nano ~/zshrc
 source ~/.zshrc
 ```
 
-## cloudflared
+### cloudflared
 - Follow this: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/install-and-setup/tunnel-guide/local/
 ```
 wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb
 cloudflared tunnel login
-cloudflared tunnel create <NAME>
+cloudflared tunnel create R6625_host
 cloudflared tunnel list
 
 nano ~/.cloudflared/config.yml
-#url: http://localhost:8000
-#tunnel: <Tunnel-UUID>
-#credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
+
+tunnel: <Tunnel-UUID>
+credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
+ingress:
+  - hostname: lxdui.guhaogao.com
+    service: https://localhost:8443
+    originRequest:
+      noTLSVerify: true
+  - hostname: ssh_R6625_host.guhaogao.com
+    service: https://localhost:22
+  - service: http_status:404
 
 cloudflared tunnel route dns R6625_host lxdui.guhaogao.com # new CNAME
+cloudflared tunnel route dns R6625_host ssh_R6625_host.guhaogao.com # new CNAME
+cloudflared tunnel run R6625_host
 
 ```
 
-## code-server
+### code-server
 
