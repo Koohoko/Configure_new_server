@@ -42,18 +42,26 @@ nano ~/.cloudflared/config.yml
 
 tunnel: <Tunnel-UUID>
 credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
-ingress:
-  - hostname: lxdui.guhaogao.com
-    service: https://localhost:8443
-    originRequest:
-      noTLSVerify: true
-  - hostname: ssh_R6625_host.guhaogao.com
-    service: https://localhost:22
-  - service: http_status:404
+#ingress:
+#  - hostname: lxdui.guhaogao.com
+#    service: https://localhost:8443
+#    originRequest:
+#      noTLSVerify: true
+#  - hostname: ssh_R6625_host.guhaogao.com
+#    service: ssh://localhost:22
+#  - service: http_status:404
 
 cloudflared tunnel route dns R6625_host lxdui.guhaogao.com # new CNAME
 cloudflared tunnel route dns R6625_host ssh_R6625_host.guhaogao.com # new CNAME
 cloudflared tunnel run R6625_host
+
+# Don't forget to create zero-trust access application !!!
+
+# Auto start
+sudo cp /home/leo_group/.cloudflared/config.yml /etc/cloudflared/config.yml
+sudo cloudflared service install
+sudo systemctl start cloudflared
+sudo systemctl restart cloudflared
 
 ```
 
