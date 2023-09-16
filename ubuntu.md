@@ -40,18 +40,13 @@ cloudflared tunnel list
 
 nano ~/.cloudflared/config.yml
 
-tunnel: <Tunnel-UUID>
-credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
+#tunnel: <Tunnel-UUID>
+#credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
 #ingress:
-#  - hostname: lxdui.guhaogao.com
-#    service: https://localhost:8443
-#    originRequest:
-#      noTLSVerify: true
 #  - hostname: ssh_R6625_host.guhaogao.com
 #    service: ssh://localhost:22
 #  - service: http_status:404
 
-cloudflared tunnel route dns R6625_host lxdui.guhaogao.com # new CNAME
 cloudflared tunnel route dns R6625_host ssh_R6625_host.guhaogao.com # new CNAME
 cloudflared tunnel run R6625_host
 
