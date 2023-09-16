@@ -1,7 +1,29 @@
 
-# install zsh
+## install zsh
+```
 sudo apt update
 sudo apt install zsh -y
+chsh -s $(which zsh)
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
 
-# install others 
+## Enable plug-ins
+### powerlevel 10k
+`git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k`
+### auto suggestions
+`git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
+### zsh-syntax-highlighting
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
+### Zsh-z
+`git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z`
+
+### edit config
+```
+sudo nano ~/zshrc
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-z)
+source ~/.zshrc
+```
+
+## install others 
 sudo apt install wget git curl vim -y
