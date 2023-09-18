@@ -30,6 +30,13 @@ sudo nano ~/.zshrc
 source ~/.zshrc
 ```
 
+### code server
+```shell
+curl -fsSL https://code-server.dev/install.sh | sh
+sudo systemctl enable --now code-server@$USER
+nano ~/.config/code-server/config.yaml
+```
+
 ### cloudflared
 - Follow this: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/install-and-setup/tunnel-guide/local/
 ```
@@ -43,11 +50,14 @@ nano ~/.cloudflared/config.yml
 #tunnel: <Tunnel-UUID>
 #credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
 #ingress:
-#  - hostname: ssh_R6625_host.guhaogao.com
+#  - hostname: ssh_R6625_container.guhaogao.com
 #    service: ssh://localhost:22
+#  - hostname: code_R6625_container.guhaogao.com
+#    service: http://localhost:8080
 #  - service: http_status:404
 
 cloudflared tunnel route dns R6625_container ssh_R6625_container.guhaogao.com # new CNAME
+cloudflared tunnel route dns R6625_container code_R6625_container.guhaogao.com # new CNAME
 cloudflared tunnel run R6625_container
 
 # Don't forget to create zero-trust access application !!!
@@ -61,5 +71,4 @@ sudo systemctl restart cloudflared
 
 ```
 
-### tmux
 
