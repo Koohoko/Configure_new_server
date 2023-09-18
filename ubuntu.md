@@ -3,7 +3,7 @@
 `sudo apt install cron`; `sudo systemctl enable cron`
 
 ## install tools
-`sudo apt install wget git curl vim -y`
+`sudo apt install wget git curl vim tmux -y`
 
 ## install zsh
 ```
@@ -24,7 +24,7 @@ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O 
 `git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z`
 ### edit config
 ```
-sudo nano ~/zshrc
+sudo nano ~/.zshrc
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-z)
 source ~/.zshrc
@@ -35,7 +35,7 @@ source ~/.zshrc
 ```
 wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb
 cloudflared tunnel login
-cloudflared tunnel create R6625_host
+cloudflared tunnel create R6625_container
 cloudflared tunnel list
 
 nano ~/.cloudflared/config.yml
@@ -47,18 +47,19 @@ nano ~/.cloudflared/config.yml
 #    service: ssh://localhost:22
 #  - service: http_status:404
 
-cloudflared tunnel route dns R6625_host ssh_R6625_host.guhaogao.com # new CNAME
-cloudflared tunnel run R6625_host
+cloudflared tunnel route dns R6625_container ssh_R6625_container.guhaogao.com # new CNAME
+cloudflared tunnel run R6625_container
 
 # Don't forget to create zero-trust access application !!!
 
 # Auto start
-sudo cp /home/leo_group/.cloudflared/config.yml /etc/cloudflared/config.yml
+sudo cloudflared service install
+sudo cp /home/hggu/.cloudflared/config.yml /etc/cloudflared/config.yml
 sudo cloudflared service install
 sudo systemctl start cloudflared
 sudo systemctl restart cloudflared
 
 ```
 
-### code-server
+### tmux
 
