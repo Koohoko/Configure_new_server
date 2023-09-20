@@ -76,3 +76,13 @@ sudo systemctl restart cloudflared
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_0.9.6_amd64.deb
 sudo dpkg -i bottom_0.9.6_amd64.deb
 ```
+
+### R
+```shell
+sudo apt install r-base r-base-dev -y
+pip3 install -U radian
+# add to path
+# export PATH=$HOME/bin:/usr/local/bin:/home/hggu/.local/bin:$PATH
+sudo apt-get install -y libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libcurl4-openssl-dev libbz2-dev liblzma-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev # pre-requisite for installing tidyverse
+
+```
