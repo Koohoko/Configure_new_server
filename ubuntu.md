@@ -3,7 +3,7 @@
 `sudo apt install cron`; `sudo systemctl enable cron`
 
 ## install tools
-`sudo apt install wget git curl vim tmux -y`
+`sudo apt install wget git curl vim tmux htop -y`
 
 ## install zsh
 ```
