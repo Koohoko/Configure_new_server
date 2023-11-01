@@ -102,7 +102,7 @@ cloudflared tunnel login
 cloudflared tunnel create R6625_container
 cloudflared tunnel list
 
-sudo cp sudo cp /home/hggu/.cloudflared/*.json /root/.cloudflared/
+sudo cp /home/hggu/.cloudflared/*.json /root/.cloudflared/
 nano ~/.cloudflared/config.yml
 
 #tunnel: <Tunnel-UUID>
