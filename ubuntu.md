@@ -102,6 +102,7 @@ cloudflared tunnel login
 cloudflared tunnel create R6625_container
 cloudflared tunnel list
 
+sudo mkdir /root/.cloudflared/
 sudo cp /home/hggu/.cloudflared/*.json /root/.cloudflared/
 nano ~/.cloudflared/config.yml
 
@@ -121,9 +122,11 @@ cloudflared tunnel run R6625_container
 # Don't forget to create zero-trust access application !!!
 
 # Auto start
+sudo mkdir /etc/cloudflared/
 sudo cp /home/hggu/.cloudflared/config.yml /etc/cloudflared/config.yml
 sudo cloudflared service install
 sudo systemctl start cloudflared
+sudo systemctl status cloudflared
 sudo systemctl restart cloudflared
 
 ```
